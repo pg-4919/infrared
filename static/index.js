@@ -1,21 +1,48 @@
-const form = document.querySelector('form');
-const input = document.querySelector('input');
+const browserViewport = document.getElementById("browser-viewport");
+const searchBar = document.getElementById("search-bar");
+const loadingRing = document.getElementById("loading-ring");
 
-form.addEventListener('submit', async event => {
-    event.preventDefault();
-    window.navigator.serviceWorker.register('./sw.js', {
-        scope: __uv$config.prefix
-    }).then(() => {
-        let url = input.value.trim();
-        if (!isUrl(url)) url = 'https://www.google.com/search?q=' + url;
-        else if (!(url.startsWith('https://') || url.startsWith('http://'))) url = 'http://' + url;
+function isUrl(string = ""){
+    if (/^http(s?):\/\//.test(string) || string.includes(".") && string.substr(0, 1) !== " ") return true;
+    return false;
+}
 
+function cleanUrl(string) {
+    let url = string.trim();
+    if (!isUrl(url)) url = "https://www.google.com/search?q=" + url;
+    else if (!(url.startsWith("https://") || url.startsWith("http://"))) url = "http://" + url;
+    return url;
+}
 
-        window.location.href = __uv$config.prefix + __uv$config.encodeUrl(url);
-    });
+function encodeString(string) {
+    if (!string) return string;
+    return encodeURIComponent(
+        string.toString()
+            .split("")
+            .map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char)
+            .join("")
+    );
+}
+
+function getEncodedUrl(string) {
+    const url = cleanUrl(string);
+    const encodedUrl = encodeString(url);
+    return `/service/${encodedUrl}`;
+}
+
+searchBar.addEventListener("change", () => {
+    browserViewport.setAttribute("src", "https://infrared.up.railway.app" + getEncodedUrl(searchBar.value));
+    loadingRing.style.visibility = "visible";
 });
 
-function isUrl(val = ''){
-    if (/^http(s?):\/\//.test(val) || val.includes('.') && val.substr(0, 1) !== ' ') return true;
-    return false;
-};
+browserViewport.addEventListener("click", () => {
+    checkIframeLoaded();
+});
+
+browserViewport.addEventListener("load", () => {
+    loadingRing.style.visibility = "hidden";
+});
+
+browserViewport.contentDocument.addEventListener("unload", () => {
+    alert("NOOOOO YOU DONt NOOO")
+});
