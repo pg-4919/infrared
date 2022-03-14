@@ -44,5 +44,5 @@ browserViewport.addEventListener("load", () => {
 });
 
 browserViewport.contentWindow.addEventListener("beforeunload", () => {
-    document.write("something happened I guess");
+    loadingRing.style.visibility = "visible";
 });
