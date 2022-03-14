@@ -43,6 +43,6 @@ browserViewport.addEventListener("load", () => {
     loadingRing.style.visibility = "hidden";
 });
 
-browserViewport.contentWindow.addEventListener("hashchange", () => {
+browserViewport.contentWindow.addEventListener("popstate", () => {
     loadingRing.style.visibility = "visible";
 });
