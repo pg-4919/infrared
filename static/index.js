@@ -43,6 +43,9 @@ browserViewport.addEventListener("load", () => {
     loadingRing.style.visibility = "hidden";
 });
 
-browserViewport.contentWindow.addEventListener("popstate", () => {
+browserViewport.contentWindow.addEventListener("click", () => {
+    const browserDoc = browserViewport.contentDocument;
+    if (browserDoc.readyState === "complete") return;
     loadingRing.style.visibility = "visible";
+    return;
 });
