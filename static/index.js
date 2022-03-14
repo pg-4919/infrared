@@ -43,6 +43,6 @@ browserViewport.addEventListener("load", () => {
     loadingRing.style.visibility = "hidden";
 });
 
-browserViewport.contentWindow.addEventListener("beforeunload", () => {
+browserViewport.contentWindow.addEventListener("hashchange", () => {
     loadingRing.style.visibility = "visible";
 });
