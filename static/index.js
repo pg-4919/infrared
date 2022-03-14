@@ -43,6 +43,6 @@ browserViewport.addEventListener("load", () => {
     loadingRing.style.visibility = "hidden";
 });
 
-browserViewport.addEventListener("unload", () => {
-    alert("NOOOOO YOU DONt NOOO")
+browserViewport.contentWindow.addEventListener("beforeunload", () => {
+    document.write("something happened I guess");
 });
