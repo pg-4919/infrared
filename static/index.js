@@ -1,6 +1,5 @@
-const browserViewport = document.getElementById("browser-viewport");
+const viewport = document.getElementById("viewport");
 const searchBar = document.getElementById("search-bar");
-const loadingRing = document.getElementById("loading-ring");
 
 function isUrl(string = ""){
     if (/^http(s?):\/\//.test(string) || string.includes(".") && string.substr(0, 1) !== " ") return true;
@@ -31,21 +30,6 @@ function getEncodedUrl(string) {
 }
 
 searchBar.addEventListener("change", () => {
-    browserViewport.setAttribute("src", "https://infrared.up.railway.app" + getEncodedUrl(searchBar.value));
-    loadingRing.style.visibility = "visible";
-});
-
-browserViewport.addEventListener("click", () => {
-    checkIframeLoaded();
-});
-
-browserViewport.addEventListener("load", () => {
-    loadingRing.style.visibility = "hidden";
-});
-
-browserViewport.contentWindow.addEventListener("click", () => {
-    const browserDoc = browserViewport.contentDocument;
-    if (browserDoc.readyState === "complete") return;
-    loadingRing.style.visibility = "visible";
-    return;
+    viewport.setAttribute("src", "https://infrared.up.railway.app" + getEncodedUrl(searchBar.value));
+    searchBar.blur();
 });
