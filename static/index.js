@@ -31,5 +31,10 @@ function getEncodedUrl(string) {
 
 searchBar.addEventListener("change", () => {
     viewport.setAttribute("src", "https://infrared.up.railway.app" + getEncodedUrl(searchBar.value));
+    searchBar.value = cleanUrl(searchBar.value);
     searchBar.blur();
 });
+
+viewport.contentWindow.addEventListener("beforeunload", () => {
+    alert("something");
+})
