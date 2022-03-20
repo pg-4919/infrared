@@ -35,6 +35,8 @@ searchBar.addEventListener("change", () => {
     searchBar.blur();
 });
 
-viewport.contentWindow.addEventListener("beforeunload", () => {
-    alert("something");
-})
+viewport.addEventListeer("load", () => {
+    viewport.contentWindow.addEventListener("beforeunload", () => {
+        alert("something");
+    });
+});
