@@ -8,11 +8,33 @@
         <link href="index.css" rel="stylesheet" type="text/css" />
       </head>
       <body>
-        <div class="container">
+        <div class="browser-container">
             <div class="gui-container">
-                <input type="text" id="search-bar" class="search-bar" autocomplete="off">
+                <div class="loading" id="loading-indicator">
+                </div>
+                <div class="button-container">
+                </div>
+                <div class="search-bar-container">
+                    <input type="text" id="search-bar" class="search-bar" autocomplete="off">
+                </div>
             </div>
-            <iframe src="https://infrared.up.railway.app" id="viewport" class="viewport" name="viewport" sandbox="allow-downloads-without-user-activation allow-downloads allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation allow-top-navigation-by-user-activation" allow="fullscreen"></iframe>
+            <div class="viewport-container">
+                <iframe src="https://infrared.up.railway.app/service/hvtr%3A-%2Feomgne%2Ccmm" id="viewport" class="viewport" name="viewport" sandbox="allow-downloads-without-user-activation
+                    allow-downloads
+                    allow-forms
+                    allow-modals
+                    allow-orientation-lock
+                    allow-pointer-lock
+                    allow-popups
+                    allow-popups-to-escape-sandbox
+                    allow-presentation
+                    allow-same-origin
+                    allow-scripts
+                    allow-storage-access-by-user-activation
+                    allow-top-navigation
+                    allow-top-navigation-by-user-activation"
+                allow="fullscreen"></iframe>
+            </div>
         </div>
       </body>
     <script src="index.js"></script>
