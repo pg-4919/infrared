@@ -35,8 +35,8 @@ searchBar.addEventListener("change", () => {
     searchBar.blur();
 });
 
-document.addEventListener("ready", () => {
-     window.navigator.serviceWorker.register("./sw.js");
+window.addEventListener("load", () => {
+     navigator.serviceWorker.register("./sw.js", { scope: "/service/" });
 });
 
 viewport.addEventListener("load", () => {
