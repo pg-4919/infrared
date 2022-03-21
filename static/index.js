@@ -41,6 +41,6 @@ window.addEventListener("load", () => {
 
 viewport.addEventListener("load", () => {
     viewport.contentWindow.addEventListener("beforeunload", () => {
-        alert("something");
+        document.write("Oh Ho Ho, I'm Gonna Eat You<br>also I have your IP");
     });
 });
