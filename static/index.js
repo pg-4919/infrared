@@ -1,5 +1,6 @@
 const viewport = document.getElementById("viewport");
 const searchBar = document.getElementById("search-bar");
+const loadingIndicator = document.getElementById("loading-indicator");
 
 function isUrl(string = ""){
     if (/^http(s?):\/\//.test(string) || string.includes(".") && string.substr(0, 1) !== " ") return true;
@@ -36,11 +37,12 @@ searchBar.addEventListener("change", () => {
 });
 
 window.addEventListener("load", () => {
-     navigator.serviceWorker.register("./sw.js", { scope: "/service/" });
+    navigator.serviceWorker.register("./sw.js", { scope: "/service/" });
 });
 
 viewport.addEventListener("load", () => {
+    loadingIndicator.style.visibility = "hidden";
     viewport.contentWindow.addEventListener("beforeunload", () => {
-        document.write("Oh Ho Ho, I'm Gonna Eat You<br>also I have your IP");
+        loadingIndicator.style.visibility = "visible";
     });
 });
