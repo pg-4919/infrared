@@ -43,7 +43,7 @@ window.addEventListener("load", () => {
 viewport.addEventListener("load", () => {
     loadingIndicator.style.visibility = "hidden";
     viewport.contentWindow.addEventListener("beforeunload", () => {
-        viewport.contentWindow.addEventListener("unload", () => searchBar.value = viewport.contentWindow.location.href);
+        searchBar.value = viewport.contentWindow.location.href;
         loadingIndicator.style.visibility = "visible";
     });
 });
