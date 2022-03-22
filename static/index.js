@@ -24,6 +24,17 @@ function encodeString(string) {
     );
 }
 
+function decodeString(string) {
+    if (!string) return string;
+    let [ input, ...search ] = string.split("?");
+    return decodeURIComponent(input).split("").map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt(0) ^ 2) : char).join("") + (search.length ? "?" + search.join("?") : "");
+}
+
+function decodeUltravioletUrl(string) {
+    const encodedUrl = string.replace("https://infrared.up.railway.app/service/", "");
+    return decodeString(encodedUrl);
+}
+
 function getEncodedUrl(string) {
     const url = cleanUrl(string);
     const encodedUrl = encodeString(url);
@@ -41,9 +52,9 @@ window.addEventListener("load", () => {
 });
 
 viewport.addEventListener("load", () => {
+    searchBar.value = decodeUltravioletUrl(viewport.contentWindow.location.href);
     loadingIndicator.style.visibility = "hidden";
     viewport.contentWindow.addEventListener("beforeunload", () => {
-        viewport.contentWindow.addEventListener("unload", () => searchBar.value = viewport.contentWindow.location.href);
         loadingIndicator.style.visibility = "visible";
     });
 });
