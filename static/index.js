@@ -57,7 +57,4 @@ viewport.addEventListener("load", () => {
     viewport.contentWindow.addEventListener("beforeunload", () => {
         loadingIndicator.style.visibility = "visible";
     });
-    viewport.contentWindow.addEventListener("unload", () => {
-        viewport.contentDocument.addEventListener("DOMContentLoaded", () => alert("pog"))
-    });
 });
